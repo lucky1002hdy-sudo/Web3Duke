@@ -10,10 +10,9 @@
 # ==============================================================================
 
 # --- 本地测试数据源 (开箱即用，可直接运行 python aggregator.py 体验) ---
-tests/mock_sources/source1_clash.yaml
-tests/mock_sources/source2_uris.txt
-tests/mock_sources/source3_b64.txt
+
 
 # --- 远程公开授权订阅示例 (根据实际情况取消注释或替换) ---
 # https://raw.githubusercontent.com/your-username/my-authorized-nodes/main/sub.yaml
 # https://example.com/authorized-source.txt
+https://raw.githubusercontent.com/freenodess/freenodess/refs/heads/main/nodes/clash.yaml
