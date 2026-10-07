@@ -1,0 +1,19 @@
+# ==============================================================================
+# Public Authorized Node Sources (公开授权节点数据源配置)
+# ==============================================================================
+# 每行填写一个数据源地址（URL 或本地测试文件路径）。
+# 忽略空行和以 '#' 开头的注释行。
+# 
+# 安全声明与使用守则：
+# 1. 仅限填入您拥有合法使用权或获得明确再分发授权的公开数据源。
+# 2. 禁止填入未经授权扫描、探测或盗用的第三方节点链接。
+# ==============================================================================
+
+# --- 本地测试数据源 (开箱即用，可直接运行 python aggregator.py 体验) ---
+tests/mock_sources/source1_clash.yaml
+tests/mock_sources/source2_uris.txt
+tests/mock_sources/source3_b64.txt
+
+# --- 远程公开授权订阅示例 (根据实际情况取消注释或替换) ---
+# https://raw.githubusercontent.com/your-username/my-authorized-nodes/main/sub.yaml
+# https://example.com/authorized-source.txt

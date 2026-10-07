@@ -1,0 +1,4 @@
+vless://a3b2c1d0-1234-5678-9abc-def012345678@us01.example.com:443?encryption=none&security=reality&sni=us01.example.com&fp=chrome&pbk=fakekey123&sid=1234&type=grpc&serviceName=vless-grpc#US-01-VLESS
+trojan://sample-trojan-pass@sg01.example.com:443?security=tls&sni=sg01.example.com&type=ws&path=%2Ftrojan#SG-01-Trojan
+ss://YWVzLTI1Ni1nY206c2FtcGxlLWF1dGhvcml6ZWQtcGFzc3dvcmQ=@jp01.example.com:8388#JP-01-SS-Duplicate
+trojan://brokenpass@0.0.0.0:443#Invalid-Node

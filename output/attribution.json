@@ -1,0 +1,57 @@
+{
+  "HK-01-VMess": {
+    "type": "vmess",
+    "server": "hk01.example.com",
+    "port": 443,
+    "sources": [
+      "tests/mock_sources/source1_clash.yaml"
+    ],
+    "fingerprint": "108f3a523e19824ec3658c9d2b1d168296eef97ea588a7c4805782d08d7503ad"
+  },
+  "JP-01-SS": {
+    "type": "ss",
+    "server": "jp01.example.com",
+    "port": 8388,
+    "sources": [
+      "tests/mock_sources/source1_clash.yaml",
+      "tests/mock_sources/source2_uris.txt"
+    ],
+    "fingerprint": "98f19c12069627665d539cef9cceab8eec1e23df72733ae25d2b813e61ec249c"
+  },
+  "US-01-VLESS": {
+    "type": "vless",
+    "server": "us01.example.com",
+    "port": 443,
+    "sources": [
+      "tests/mock_sources/source2_uris.txt"
+    ],
+    "fingerprint": "944f81b3a1b9c39407e6146cf1860aa872d3b39b008416240f4f7d0d00f3f5cd"
+  },
+  "SG-01-Trojan": {
+    "type": "trojan",
+    "server": "sg01.example.com",
+    "port": 443,
+    "sources": [
+      "tests/mock_sources/source2_uris.txt"
+    ],
+    "fingerprint": "3d55b2927ebf54e0ad0061be949f6eb880a1704d3b1747bfc2a7f692f15c9c73"
+  },
+  "DE-01-Trojan": {
+    "type": "trojan",
+    "server": "de01.example.com",
+    "port": 443,
+    "sources": [
+      "tests/mock_sources/source3_b64.txt"
+    ],
+    "fingerprint": "c3c0f5fabc927bb4a1112932a50a7ed41e7e86643d090125bf6ce0144ec8f7fe"
+  },
+  "KR-01-VMess": {
+    "type": "vmess",
+    "server": "kr01.example.com",
+    "port": 443,
+    "sources": [
+      "tests/mock_sources/source3_b64.txt"
+    ],
+    "fingerprint": "02c451089476af15129cc2ea5b1d50aba9486c1c4235786b00cd174f18b06c24"
+  }
+}

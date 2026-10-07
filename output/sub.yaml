@@ -1,0 +1,120 @@
+# ==============================================================================
+# Public Authorized Node Subscriptions (Clash / Clash Meta Configuration)
+# Generated automatically by aggregator.py
+# Updated: 2026-10-07 06:14:53 UTC
+# Total Unique Proxies: 6
+# ==============================================================================
+# Node Source Attribution (节点来源追踪):
+# - HK-01-VMess (vmess://hk01.example.com:443) -> [tests/mock_sources/source1_clash.yaml]
+# - JP-01-SS (ss://jp01.example.com:8388) -> [tests/mock_sources/source1_clash.yaml, tests/mock_sources/source2_uris.txt]
+# - US-01-VLESS (vless://us01.example.com:443) -> [tests/mock_sources/source2_uris.txt]
+# - SG-01-Trojan (trojan://sg01.example.com:443) -> [tests/mock_sources/source2_uris.txt]
+# - DE-01-Trojan (trojan://de01.example.com:443) -> [tests/mock_sources/source3_b64.txt]
+# - KR-01-VMess (vmess://kr01.example.com:443) -> [tests/mock_sources/source3_b64.txt]
+# ==============================================================================
+
+port: 7890
+socks-port: 7891
+allow-lan: false
+mode: rule
+log-level: info
+external-controller: 127.0.0.1:9090
+proxies:
+- name: HK-01-VMess
+  type: vmess
+  server: hk01.example.com
+  port: 443
+  udp: true
+  uuid: a3b2c1d0-1234-5678-9abc-def012345678
+  alterId: 0
+  cipher: auto
+  tls: true
+  network: ws
+  ws-opts:
+    path: /ws
+    headers:
+      Host: hk01.example.com
+- name: JP-01-SS
+  type: ss
+  server: jp01.example.com
+  port: 8388
+  udp: true
+  cipher: aes-256-gcm
+  password: sample-authorized-password
+- name: US-01-VLESS
+  type: vless
+  server: us01.example.com
+  port: 443
+  udp: true
+  uuid: a3b2c1d0-1234-5678-9abc-def012345678
+  tls: true
+  servername: us01.example.com
+  client-fingerprint: chrome
+  reality-opts:
+    public-key: fakekey123
+    short-id: '1234'
+  network: grpc
+  grpc-opts:
+    grpc-service-name: vless-grpc
+- name: SG-01-Trojan
+  type: trojan
+  server: sg01.example.com
+  port: 443
+  udp: true
+  password: sample-trojan-pass
+  sni: sg01.example.com
+  network: ws
+  ws-opts:
+    path: /trojan
+- name: DE-01-Trojan
+  type: trojan
+  server: de01.example.com
+  port: 443
+  udp: true
+  password: pass666
+  sni: de01.example.com
+- name: KR-01-VMess
+  type: vmess
+  server: kr01.example.com
+  port: 443
+  udp: true
+  uuid: b4c3d2e1-2345-6789-abcd-ef0123456789
+  alterId: 0
+  cipher: auto
+  tls: true
+  servername: kr01.example.com
+  network: ws
+  ws-opts:
+    path: /ws
+proxy-groups:
+- name: PROXY
+  type: select
+  proxies:
+  - AUTO
+  - HK-01-VMess
+  - JP-01-SS
+  - US-01-VLESS
+  - SG-01-Trojan
+  - DE-01-Trojan
+  - KR-01-VMess
+- name: AUTO
+  type: url-test
+  url: http://www.gstatic.com/generate_204
+  interval: 300
+  tolerance: 50
+  proxies: &id001
+  - HK-01-VMess
+  - JP-01-SS
+  - US-01-VLESS
+  - SG-01-Trojan
+  - DE-01-Trojan
+  - KR-01-VMess
+- name: FALLBACK
+  type: fallback
+  url: http://www.gstatic.com/generate_204
+  interval: 300
+  proxies: *id001
+rules:
+- GEOIP,LAN,DIRECT
+- GEOIP,CN,DIRECT
+- MATCH,PROXY
