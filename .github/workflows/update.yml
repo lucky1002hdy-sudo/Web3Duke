@@ -4,7 +4,12 @@ on:
   schedule:
     # Run every 6 hours
     - cron: '0 */6 * * *'
-  workflow_dispatch: # Allow manual trigger from GitHub UI
+  workflow_dispatch:
+
+# Prevent multiple aggregation jobs from running at the same time
+concurrency:
+  group: aggregate-main
+  cancel-in-progress: false
 
 permissions:
   contents: write
@@ -16,6 +21,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -40,10 +47,34 @@ jobs:
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
-          git add output/sub.yaml
-          if git diff --staged --quiet; then
-            echo "No changes in output/sub.yaml. Skipping commit."
-          else
-            git commit -m "chore(auto): update aggregated subscriptions [skip ci]"
-            git push
+
+          git add output/sub.yaml output/attribution.json
+
+          if git diff --cached --quiet; then
+            echo "No changes in generated files. Skipping commit."
+            exit 0
           fi
+
+          git commit -m "chore(auto): update aggregated subscriptions [skip ci]"
+
+          for i in 1 2 3; do
+            echo "Push attempt $i..."
+
+            git fetch origin main
+
+            if git rebase origin/main; then
+              if git push origin HEAD:main; then
+                echo "Push succeeded."
+                exit 0
+              fi
+            else
+              echo "Rebase failed."
+              git rebase --abort || true
+            fi
+
+            echo "Push failed. Retrying in 5 seconds..."
+            sleep 5
+          done
+
+          echo "Failed to push after 3 attempts."
+          exit 1
