@@ -15,4 +15,4 @@
 # --- 远程公开授权订阅示例 (根据实际情况取消注释或替换) ---
 # https://raw.githubusercontent.com/your-username/my-authorized-nodes/main/sub.yaml
 # https://example.com/authorized-source.txt
-https://raw.githubusercontent.com/freenodess/freenodess/refs/heads/main/nodes/clash.yaml
+https://github.com/litportnet/free-proxy-list?utm_source=chatgpt.com
